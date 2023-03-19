@@ -1,0 +1,13 @@
+@app.route('/media', methods=['POST'])
+def calcular_media():
+    nota1 = request.json.get('nota1', None)
+    nota2 = request.json.get('nota2', None)
+    if nota1 is None or nota2 is None:
+        return jsonify({'erro': 'Nota1 e Nota2 são obrigatórios'}), 400
+    media = (nota1 + nota2) / 2
+    return jsonify({'media': media})
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
+    
